@@ -4,52 +4,16 @@ namespace Lection5HomeWork
 {
     class Program
     {
-
         static int MinMatrixElem(int[,] matrix)
         {
-
-            if (matrix == null || matrix.Length == 0)
-            {
-                throw new ArgumentException("Array null or empty");
-            }
-
-            int minMatrixElement = 0;
-            int minMatrixElementx = 0;
-            int minMatrixElementy = 0;
-
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    if (matrix[minMatrixElementx + i, minMatrixElementy + i] > matrix[i, j])
-                    {
-                        minMatrixElement = matrix[i, j];
-                    }
-                }
-            }
-            return minMatrixElement;
+            (int minR, int minC) = MinMatrixIndexElem(matrix);
+            return matrix[minR, minC];
         }
 
         static int MaxMatrixElem(int[,] matrix)
         {
-            if (matrix == null || matrix.Length == 0)
-            {
-                throw new ArgumentException("Array null or empty");
-            }
-
-            int maxMatrixElement = 0;
-
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    if (maxMatrixElement < matrix[i, j])
-                    {
-                        maxMatrixElement = matrix[i, j];
-                    }
-                }
-            }
-            return maxMatrixElement;
+            (int maxR, int maxC) = MaxMatrixIndexElem(matrix);
+            return matrix[maxR, maxC];
         }
 
         static (int,int) MinMatrixIndexElem(int[,] matrix)
@@ -60,47 +24,85 @@ namespace Lection5HomeWork
                 throw new ArgumentException("Array null or empty");
             }
 
-            int minMatrixIndexElementx = 0;
-            int minMatrixIndexElementy = 0;
+            int minI = 0;
+            int minJ = 0;
 
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    if (matrix[minMatrixIndexElementx, minMatrixIndexElementy] > matrix[i, j])
+                    if (matrix[minI, minJ] > matrix[i, j])
                     {
-                        minMatrixIndexElementx = i;
-                        minMatrixIndexElementy = j;
+                        minI = i;
+                        minJ = j;
                     }
                 }
             }
-            return (minMatrixIndexElementx, minMatrixIndexElementy);
+            return (minI, minJ);
         }
 
         static (int,int) MaxMatrixIndexElem(int[,] matrix)
         {
-
             if (matrix == null || matrix.Length == 0)
             {
                 throw new ArgumentException("Array null or empty");
             }
 
-            int maxMatrixIndexElementx = 0;
-            int maxMatrixIndexElementy = 0;
+            int maxI = 0;
+            int maxJ = 0;
 
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    if (matrix[maxMatrixIndexElementx, maxMatrixIndexElementy] < matrix[i, j])
+                    if (matrix[maxI, maxJ] < matrix[i, j])
                     {
-                        maxMatrixIndexElementx = i;
-                        maxMatrixIndexElementy = j;
+                        maxI = i;
+                        maxJ = j;
                     }
                 }
             }
-            return (maxMatrixIndexElementx, maxMatrixIndexElementy);
+            return (maxI, maxJ);
         }
+
+        //5.	Find the number of array elements that are greater than all their neighbors at the same time
+        //static int GreaterElementOfMatrixArray(int[,] matrix)
+        //{
+        //    if (matrix == null || matrix.Length == 0)
+        //    {
+        //        throw new ArgumentException("Array null or empty");
+        //    }
+
+        //    int targetI = 0;
+        //    int greatNumber = 0;
+        //    int targetJ = 0;
+        //    int sumI = 0;
+        //    int sumJ = 0;
+
+        //    int[] position = new int[matrix.GetLength(0) * matrix.GetLength(1)];
+
+        //    while (greatNumber == 0)
+        //    {
+        //        for (int i = 0; i < matrix.GetLength(0); i++)
+        //        {
+        //            for (int j = 0; j < matrix.GetLength(1); j++)
+        //            {
+        //                greatNumber = matrix[i, j];
+        //                if(i == 0 && j == 0)
+        //                {
+        //                    sumI = matrix[i + 1, j] + matrix[i + 1, j + 1] + matrix[i, j + 1];
+        //                }
+        //                else if(i != 0 && j == 0)
+        //                {
+        //                    sumI = matrix[i + 1, j] + matrix[i + 1, j + 1] + matrix[i, j + 1];
+        //                }
+        //            }
+        //        }
+        //    }
+
+
+        //    return targetI;
+        //}
 
         static void Main(string[] args)
         {
@@ -119,6 +121,8 @@ namespace Lection5HomeWork
             Console.WriteLine(MaxMatrixIndexElem(arr));
             Console.WriteLine(MinMatrixElem(arr));
             Console.WriteLine(MaxMatrixElem(arr));
+            Console.WriteLine();
+            Console.WriteLine(GreaterElementOfMatrixArray(arr));
         }
 
         #region Utils
