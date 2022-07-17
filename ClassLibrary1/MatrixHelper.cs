@@ -1,0 +1,157 @@
+﻿using System;
+
+namespace HelperLibrary
+{
+    class MatrixHelper
+    {
+
+        public static int[,] GenerateMatrix(int x, int y)
+        {
+            if (x <= 0 || y <= 0)
+            {
+                throw new ArgumentException();
+            }
+
+            Random random = new Random();
+            int[,] matrix = new int[x, y];
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    matrix[i, j] = random.Next(0, x * y);
+                }
+            }
+
+            return matrix;
+        }
+
+        public static int[,] ReverseMatrix(int[,] matrix)
+        {
+            if (matrix == null)
+            {
+                throw new ArgumentException();
+            }
+
+            for (int i = 0, count = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1) && count < matrix.Length / 2; j++, count++)
+                {
+                    LinearEquations.Swap(ref matrix[i, j], ref matrix[matrix.GetLength(0) - 1 - i, matrix.GetLength(1) - 1 - j]);
+                }
+            }
+
+            return matrix;
+        }
+
+        public static void PrintMatrix(int[,] matrix)
+        {
+            if (matrix == null)
+            {
+                throw new ArgumentException();
+            }
+
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    Console.Write(matrix[i, j] + " ");
+                }
+
+                Console.WriteLine();
+            }
+
+            Console.WriteLine();
+        }
+        public static int MinMatrixElem(int[,] matrix)
+        {
+            (int minR, int minC) = MinMatrixIndexElem(matrix);
+
+            return matrix[minR, minC];
+        }
+
+        public static int MaxMatrixElem(int[,] matrix)
+        {
+            (int maxR, int maxC) = MaxMatrixIndexElem(matrix);
+
+            return matrix[maxR, maxC];
+        }
+
+       public static (int, int) MinMatrixIndexElem(int[,] matrix)
+        {
+
+            if (matrix == null || matrix.Length == 0)
+            {
+                throw new ArgumentException("Array null or empty");
+            }
+
+            int minI = 0;
+            int minJ = 0;
+
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    if (matrix[minI, minJ] > matrix[i, j])
+                    {
+                        minI = i;
+                        minJ = j;
+                    }
+                }
+            }
+
+            return (minI, minJ);
+        }
+
+        public static (int, int) MaxMatrixIndexElem(int[,] matrix)
+        {
+            if (matrix == null || matrix.Length == 0)
+            {
+                throw new ArgumentException("Array null or empty");
+            }
+
+            int maxI = 0;
+            int maxJ = 0;
+
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    if (matrix[maxI, maxJ] < matrix[i, j])
+                    {
+                        maxI = i;
+                        maxJ = j;
+                    }
+                }
+            }
+
+            return (maxI, maxJ);
+        }
+
+        public static int[,] FlippedArrayAboutItsMainDiagonal(int[,] matrix)
+        {
+            if (matrix == null || matrix.GetLength(0) != matrix.GetLength(1) || matrix.Length != 0)
+            {
+                throw new ArgumentException();
+            }
+
+            int[,] flippedArray = new int[matrix.GetLength(0), matrix.GetLength(1)];
+
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    if(i != j)
+                    {
+                        flippedArray[i, j] = matrix[matrix.GetLength(0) - 1 - i, matrix.GetLength(1) - 1 - j];
+                    }
+                    else
+                    {
+                        flippedArray[i, j] = matrix[i, j];
+                    }
+                }
+            }
+
+            return flippedArray;
+        }
+    }
+}
