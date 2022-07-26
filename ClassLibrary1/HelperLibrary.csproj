@@ -4,8 +4,4 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Lection5HomeWork\Lection5HomeWork.csproj" />
-  </ItemGroup>
-
 </Project>

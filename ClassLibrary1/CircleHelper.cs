@@ -2,7 +2,7 @@
 
 namespace HelperLibrary
 {
-    class CircleHelper
+    public class CircleHelper
     {
 
         public static double PowerOfNumber(double number, double powerOfnumber)

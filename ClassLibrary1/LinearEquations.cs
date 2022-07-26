@@ -2,7 +2,7 @@
 
 namespace HelperLibrary
 {
-    class LinearEquations
+    public class LinearEquations
     {
 
         public static int CalculateMuntes(int hours)

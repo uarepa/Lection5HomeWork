@@ -2,9 +2,23 @@
 
 namespace HelperLibrary
 {
-    class MatrixHelper
+    public class MatrixHelper
     {
 
+         public static int[,] GenerateMatrix(int n)
+        {
+            int[,] matrix = new int[n, n];
+            int count = 1;
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    matrix[i, j] = count;
+                    count++;
+                }
+            }
+            return matrix;
+        }
         public static int[,] GenerateMatrix(int x, int y)
         {
             if (x <= 0 || y <= 0)
@@ -129,20 +143,22 @@ namespace HelperLibrary
 
         public static int[,] FlippedArrayAboutItsMainDiagonal(int[,] matrix)
         {
-            if (matrix == null || matrix.GetLength(0) != matrix.GetLength(1) || matrix.Length != 0)
+            if (matrix == null || matrix.GetLength(0) != matrix.GetLength(1) || matrix.Length == 0)
             {
                 throw new ArgumentException();
             }
 
-            int[,] flippedArray = new int[matrix.GetLength(0), matrix.GetLength(1)];
+            int rows = matrix.GetLength(0);
+            int cols = matrix.GetLength(1);
+            int[,] flippedArray = new int[rows, cols];
 
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < matrix.GetLength(1); j++)
+                for (int j = 0; j < cols; j++)
                 {
                     if(i != j)
                     {
-                        flippedArray[i, j] = matrix[matrix.GetLength(0) - 1 - i, matrix.GetLength(1) - 1 - j];
+                        flippedArray[i, j] = matrix[rows - 1 - i, cols - 1 - j];
                     }
                     else
                     {

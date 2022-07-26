@@ -2,7 +2,7 @@
 
 namespace HelperLibrary
 {
-    class IfElseHelper
+    public class IfElseHelper
     {
 
         public static int Condition(int a, int b)
