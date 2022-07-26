@@ -12,6 +12,8 @@ namespace Lection5HomeWork
         {
             ;
             MatrixHelper.PrintMatrix(MatrixHelper.FlippedArrayAboutItsMainDiagonal(MatrixHelper.GenerateMatrix(3)));
+
+            Console.WriteLine(MatrixHelper.TheNumberThatAreGreatedThanAllNeighbors(MatrixHelper.GenerateMatrix(3,6)));
         }
 
         #region Utils

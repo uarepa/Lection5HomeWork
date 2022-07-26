@@ -169,5 +169,47 @@ namespace HelperLibrary
 
             return flippedArray;
         }
+
+        public static int TheNumberThatAreGreatedThanAllNeighbors(int[,] matrix)
+        {
+            if (matrix == null || matrix.Length == 0)
+            {
+                throw new ArgumentException("Empty or null matrix");
+            }
+
+            int biggestnumber = 0;
+
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    int tempnumber = 0;
+
+                    for (int iInternal = i - 1; iInternal <= i + 1; iInternal++)
+                    {
+                        if (iInternal >= 0 && iInternal <= matrix.GetLength(0) - 1)
+                        {
+                            for (int jInternal = j - 1; jInternal <= j + 1; jInternal++)
+                            {
+                                if (jInternal >= 0 && jInternal <= matrix.GetLength(1) - 1 && (iInternal != i || jInternal != j))
+                                {
+                                    if(tempnumber < matrix[iInternal, jInternal])
+                                    {
+                                        tempnumber = matrix[iInternal, jInternal];
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if(matrix[i,j] > tempnumber)
+                    {
+                        biggestnumber++;
+                    }
+                }
+            }
+
+            return biggestnumber;
+        }
     }
 }
